@@ -10,7 +10,6 @@ namespace Bloggie.Web.Data
         public DbSet<Tag> Tags { get; set; }
 
         public BloggieDbContext(DbContextOptions<BloggieDbContext> options) : base(options)
-        {
-        }
+        {}
     }
 }
