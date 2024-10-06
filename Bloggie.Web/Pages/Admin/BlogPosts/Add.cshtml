@@ -22,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <input type="text" class="form-control" id="content" asp-for="AddBlogPost.Content">
+                <textarea class="form-control" id="content" asp-for="AddBlogPost.Content"></textarea>
             </div>
             <div class="mb-3">
                 <label for="shortDescription" class="form-label">Short Description</label>
@@ -49,7 +49,7 @@
                 <input type="checkbox" class="form-check-input" id="isVisible" asp-for="AddBlogPost.Visible">
             </div>
             <div class="mb-3">
-                <button class="btn btn-primary" type="submit">Add</button>
+                <input class="btn btn-primary" type="submit" value="Add">
             </div>
         </form>
     </div>
