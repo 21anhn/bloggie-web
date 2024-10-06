@@ -16,7 +16,7 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
         {
             _context = context;
         }
-        public void OnPost() //Create post
+        public IActionResult OnPost() //Create post
         {
             var blogPost = new BlogPost()
             {
@@ -32,6 +32,8 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
             };
             _context.BlogPosts.Add(blogPost);
             _context.SaveChanges();
+
+            return RedirectToPage("/admin/blogposts/list");
         }
     }
 }

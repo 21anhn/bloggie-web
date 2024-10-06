@@ -1,0 +1,46 @@
+﻿@page
+@model Bloggie.Web.Pages.Admin.BlogPosts.ListModel
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2 mb-2">
+    <div class="container">
+        <h1>Blog Posts</h1>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Heading</td>
+                <td>Page Title</td>
+                <td>Content</td>
+                <td>Short Description</td>
+                <td>Featured Image Url</td>
+                <td>Url Handle</td>
+                <td>Published Date</td>
+                <td>Author</td>
+                <td>Visible</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var blogPost in Model.BlogPosts)
+            {
+                <tr>
+                    <td>@blogPost.Id</td>
+                    <td>@blogPost.Heading</td>
+                    <td>@blogPost.PageTitle</td>
+                    <td>@blogPost.Content</td>
+                    <td>@blogPost.ShortDescription</td>
+                    <td>@blogPost.FeaturedImageUrl</td>
+                    <td>@blogPost.UrlHandle</td>
+                    <td>@blogPost.PublishedDate</td>
+                    <td>@blogPost.Author</td>
+                    <td>@blogPost.Visible</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
