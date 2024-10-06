@@ -15,14 +15,6 @@
             <tr>
                 <td>Id</td>
                 <td>Heading</td>
-                <td>Page Title</td>
-                <td>Content</td>
-                <td>Short Description</td>
-                <td>Featured Image Url</td>
-                <td>Url Handle</td>
-                <td>Published Date</td>
-                <td>Author</td>
-                <td>Visible</td>
             </tr>
         </thead>
         <tbody>
@@ -31,14 +23,7 @@
                 <tr>
                     <td>@blogPost.Id</td>
                     <td>@blogPost.Heading</td>
-                    <td>@blogPost.PageTitle</td>
-                    <td>@blogPost.Content</td>
-                    <td>@blogPost.ShortDescription</td>
-                    <td>@blogPost.FeaturedImageUrl</td>
-                    <td>@blogPost.UrlHandle</td>
-                    <td>@blogPost.PublishedDate</td>
-                    <td>@blogPost.Author</td>
-                    <td>@blogPost.Visible</td>
+                    <td><a href="/admin/blogposts/edit/@blogPost.Id">View</a></td>
                 </tr>
             }
         </tbody>
