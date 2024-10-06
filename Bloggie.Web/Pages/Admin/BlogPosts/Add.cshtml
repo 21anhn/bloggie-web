@@ -44,12 +44,12 @@
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" id="author" asp-for="AddBlogPost.Author">
             </div>
-            <div class="mb-3">
-                <label for="visible" class="form-label">Visible</label>
-                <input type="text" class="form-control" id="visible" asp-for="AddBlogPost.Visible">
+            <div class="form-check mb-3">
+                <label for="isVisible" class="form-label">Is Visible</label>
+                <input type="checkbox" class="form-check-input" id="isVisible" asp-for="AddBlogPost.Visible">
             </div>
-            <div class="mb-2">
-                <input class="btn btn-dark" type="submit" value="Add" />
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Add</button>
             </div>
         </form>
     </div>
