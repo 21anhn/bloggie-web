@@ -25,6 +25,7 @@ namespace Bloggie.Web.Repositories
             var existingBlogPost = await _context.BlogPosts.FindAsync(id);
             if (existingBlogPost != null)
             {
+                _context.BlogPosts.Remove(existingBlogPost);
                 await _context.SaveChangesAsync();
                 return true;
             }

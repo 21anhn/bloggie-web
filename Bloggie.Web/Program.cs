@@ -1,4 +1,5 @@
 using Bloggie.Web.Data;
+using Bloggie.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -14,6 +15,7 @@ namespace Bloggie.Web
             builder.Services.AddRazorPages();
             builder.Services.AddDbContext<BloggieDbContext>(options => options.
             UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
+            builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
             var app = builder.Build();
 
