@@ -19,5 +19,24 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
         {
             BlogPost = _context.BlogPosts.Find(id);
         }
+
+        public IActionResult OnPost()
+        {
+            var existingBlogPost = _context.BlogPosts.Find(BlogPost.Id);
+            if (existingBlogPost != null)
+            {
+                existingBlogPost.Heading = BlogPost.Heading;
+                existingBlogPost.PageTitle = BlogPost.PageTitle;
+                existingBlogPost.Content = BlogPost.Content;
+                existingBlogPost.ShortDescription = BlogPost.ShortDescription;
+                existingBlogPost.FeaturedImageUrl = BlogPost.FeaturedImageUrl;
+                existingBlogPost.UrlHandle = BlogPost.UrlHandle;
+                existingBlogPost.Author = BlogPost.Author;
+                existingBlogPost.PublishedDate = BlogPost.PublishedDate;
+                existingBlogPost.Visible = BlogPost.Visible;
+            }
+            _context.SaveChanges();
+            return RedirectToPage("/admin/blogposts/list");
+        }
     }
 }
