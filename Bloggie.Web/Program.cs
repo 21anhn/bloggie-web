@@ -2,6 +2,7 @@ using Bloggie.Web.Data;
 using Bloggie.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using dotenv.net;
 
 namespace Bloggie.Web
 {
@@ -10,6 +11,9 @@ namespace Bloggie.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Load the .env file before the app starts
+            DotEnv.Load();
 
             // Add services to the container.
             builder.Services.AddRazorPages();
