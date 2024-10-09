@@ -21,6 +21,7 @@ namespace Bloggie.Web
             builder.Services.AddDbContext<BloggieDbContext>(options => options.
             UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
             builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+            builder.Services.AddScoped<IImageRepository, ImageRepositoryCloudinary>();
 
             var app = builder.Build();
 

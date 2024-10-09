@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Bloggie.Web.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bloggie.Web.Controllers
 {
@@ -6,10 +7,21 @@ namespace Bloggie.Web.Controllers
     [Route("/api/[controller]")]
     public class ImagesController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
+        private readonly IImageRepository _repository;
+        public ImagesController(IImageRepository repository)
         {
-            return Ok("hehe");
+            _repository = repository;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadAsync(IFormFile file)
+        {
+            var imageUrl = await _repository.UploadAsync(file);
+            if (imageUrl == null)
+            {
+                return Problem("Something went wrong!", null, (int)System.Net.HttpStatusCode.InternalServerError);
+            }
+            return Json(new { link = imageUrl });
         }
     }
 }
