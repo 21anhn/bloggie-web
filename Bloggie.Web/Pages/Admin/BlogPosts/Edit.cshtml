@@ -9,6 +9,8 @@
     </div>
 </div>
 
+<partial name="_Notification"/>
+
 @if (Model.BlogPost != null)
 {
     <div>
@@ -54,9 +56,9 @@
                     <label for="isVisible" class="form-label">Is Visible</label>
                     <input type="checkbox" class="form-check-input" id="isVisible" asp-for="BlogPost.Visible">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-flex justify-content-between">
                     <input class="btn btn-primary" asp-page-handler="Edit" type="submit" value="Edit">
-                    <input class="btn btn-primary" asp-page-handler="Delete" type="submit" value="Delete">
+                    <input class="btn btn-danger" asp-page-handler="Delete" type="submit" value="Delete">
                 </div>
             </form>
         </div>
