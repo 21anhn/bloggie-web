@@ -13,11 +13,14 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
         [BindProperty]
         public AddBlogPost? AddBlogPost { get; set; } //ViewModel - get data from view
         private readonly IBlogPostRepository _blogPostRepository;
+        [BindProperty]
+        public IFormFile FeaturedImage { get; set; }
 
         public AddModel(IBlogPostRepository blogPostRepository)
         {
             _blogPostRepository = blogPostRepository;
         }
+
         public async Task<IActionResult> OnPost() //Create post
         {
             var blogPost = new BlogPost()

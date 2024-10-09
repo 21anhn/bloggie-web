@@ -29,8 +29,13 @@
                 <input type="text" class="form-control" id="shortDescription" asp-for="AddBlogPost.ShortDescription">
             </div>
             <div class="mb-3">
+                <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
+                <input type="file" id="featuredImageUpload" asp-for="FeaturedImage" />
+                <img id="featuredImage" src="" class="img-thumbnail" alt="" style="display: block; max-width: 300px; height: auto;">
+            </div>
+            <div class="mb-3">
                 <label for="featuredImageUrl" class="form-label">Featured Image Url</label>
-                <input type="text" class="form-control" id="featuredImageUrl" asp-for="AddBlogPost.FeaturedImageUrl">
+                <input type="text" class="form-control" id="featuredImageUrl" asp-for="AddBlogPost.FeaturedImageUrl" readonly>
             </div>
             <div class="mb-3">
                 <label for="urlHandle" class="form-label">Url Handle</label>
@@ -58,5 +63,25 @@
 @section Scripts {
     <script>
         var editor = new FroalaEditor('#content');
+                        const featuredImageUploadElement = document.querySelector('#featuredImageUpload');
+                                        featuredImageUploadElement.addEventListener('change', async (e) => {
+                                            console.log(e.target.files[0]);
+                                            let data = new FormData();
+                                            data.append('file', e.target.files[0]);
+                                            await fetch('http://localhost:5281/api/images', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Accept': '*/*'
+                                                },
+                                                body: data
+                                            }).then(response => response.json())
+                                                .then(result => {
+                                                    const featuredImageUrlElement = document.querySelector('#featuredImageUrl');
+                                                    const featuredImageUploadElement = document.querySelector('#featuredImage');
+                                                    featuredImageUrlElement.value = result.link;
+                                                    featuredImageUploadElement.src = result.link;
+                                                });
+                                        })
+
     </script>
 }
