@@ -13,6 +13,9 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
         private readonly IBlogPostRepository _blogPostRepository;
         [BindProperty]
         public BlogPost BlogPost { get; set; }
+        [BindProperty]
+        public IFormFile FeaturedImage { get; set; }
+
         public EditModel(IBlogPostRepository blogPostRepository)
         {
             _blogPostRepository = blogPostRepository;

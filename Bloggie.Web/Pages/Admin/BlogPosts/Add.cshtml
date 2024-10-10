@@ -62,26 +62,29 @@
 
 @section Scripts {
     <script>
-        var editor = new FroalaEditor('#content');
-                        const featuredImageUploadElement = document.querySelector('#featuredImageUpload');
-                                        featuredImageUploadElement.addEventListener('change', async (e) => {
-                                            console.log(e.target.files[0]);
-                                            let data = new FormData();
-                                            data.append('file', e.target.files[0]);
-                                            await fetch('http://localhost:5281/api/images', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Accept': '*/*'
-                                                },
-                                                body: data
-                                            }).then(response => response.json())
-                                                .then(result => {
-                                                    const featuredImageUrlElement = document.querySelector('#featuredImageUrl');
-                                                    const featuredImageUploadElement = document.querySelector('#featuredImage');
-                                                    featuredImageUrlElement.value = result.link;
-                                                    featuredImageUploadElement.src = result.link;
-                                                });
-                                        })
+        var editor = new FroalaEditor('#content', {
+            imageUploadURL: '/api/images'
+        });
+        const featuredImageUploadElement = document.querySelector('#featuredImageUpload');
+        featuredImageUploadElement.addEventListener('change', async (e) => {
+            //console.log(e.target.files[0]);
+            let data = new FormData();
+            data.append('file', e.target.files[0]);
+            await fetch('http://localhost:5281/api/images', {
+                method: 'POST',
+                headers: {
+                    'Accept': '*/*'
+                },
+                body: data
+            })
+                .then(response => response.json())
+                .then(result => {
+                    const featuredImageUrlElement = document.querySelector('#featuredImageUrl');
+                    const featuredImageUploadElement = document.querySelector('#featuredImage');
+                    featuredImageUrlElement.value = result.link;
+                    featuredImageUploadElement.src = result.link;
+                });
+        })
 
     </script>
 }
