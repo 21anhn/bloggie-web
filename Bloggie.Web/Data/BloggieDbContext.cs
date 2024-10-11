@@ -11,5 +11,13 @@ namespace Bloggie.Web.Data
 
         public BloggieDbContext(DbContextOptions<BloggieDbContext> options) : base(options)
         {}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BlogPost>()
+                .HasMany(b => b.Tags)
+                .WithOne(t => t.BlogPost);
+        }
+
     }
 }
