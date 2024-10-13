@@ -11,6 +11,7 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
     public class EditModel : PageModel
     {
         private readonly IBlogPostRepository _blogPostRepository;
+        private readonly ITagRepository _tagRepository;
         [BindProperty]
         public BlogPost BlogPost { get; set; }
         [BindProperty]
@@ -18,9 +19,10 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
         [BindProperty]
         public string Tags { get; set; }
 
-        public EditModel(IBlogPostRepository blogPostRepository)
+        public EditModel(IBlogPostRepository blogPostRepository, ITagRepository tagRepository)
         {
             _blogPostRepository = blogPostRepository;
+            _tagRepository = tagRepository;
         }
 
         public async Task OnGet(int id)
