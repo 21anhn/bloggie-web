@@ -8,18 +8,23 @@ namespace Bloggie.Web.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly IBlogPostRepository _repository;
+        private readonly IBlogPostRepository _blogPostRepository;
+        private readonly ITagRepository _tagRepository;
         public List<BlogPost> BlogPosts { get; set; }
+        public List<Tag> Tags { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IBlogPostRepository repository)
+
+        public IndexModel(ILogger<IndexModel> logger, IBlogPostRepository blogPostRepository, ITagRepository tagRepository)
         {
             _logger = logger;
-            _repository = repository;
+            _blogPostRepository = blogPostRepository;
+            _tagRepository = tagRepository;
         }
 
         public async Task<IActionResult> OnGet()
         {
-            BlogPosts = (await _repository.GetAllAsync()).ToList();
+            BlogPosts = (await _blogPostRepository.GetAllAsync()).ToList();
+            Tags = (await _tagRepository.GetAllAsync()).ToList();
             return Page();
         }
     }

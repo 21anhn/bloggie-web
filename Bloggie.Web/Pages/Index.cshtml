@@ -29,6 +29,16 @@
 
             <h2 class="mb-5 display-3">Blogs</h2>
 
+            <div class="mb-5">
+                @if (Model.Tags != null && Model.Tags.Any())
+                {
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <span class="badge bg-dark">@tag.Name</span>
+                    }
+                }
+            </div>
+
             @if (Model.BlogPosts != null && Model.BlogPosts.Any())
             {
                 @foreach (var blog in Model.BlogPosts)
