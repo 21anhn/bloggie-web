@@ -16,11 +16,13 @@
                 </div>
 
                 <div class="mb-3">
-                    @if(Model.BlogPost.Tags != null && Model.BlogPost.Tags.Any())
+                    @if (Model.BlogPost.Tags != null && Model.BlogPost.Tags.Any())
                     {
-                        foreach(var tag in Model.BlogPost.Tags)
+                        foreach (var tag in Model.BlogPost.Tags)
                         {
-                            <span class="badge bg-dark">@tag.Name</span>
+                            <a class="text-decoration-none" href="/tags/@tag.Name">
+                                <span class="badge bg-dark">@tag.Name</span>
+                            </a>
                         }
                     }
                 </div>
