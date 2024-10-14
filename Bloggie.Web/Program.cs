@@ -29,6 +29,13 @@ namespace Bloggie.Web
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthDbContext>();
 
+            //Use this to config Username, Password
+            /*builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.
+                options.User.
+            })*/
+
 
             builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
             builder.Services.AddScoped<IImageRepository, ImageRepositoryCloudinary>();
