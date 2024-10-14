@@ -24,7 +24,7 @@ namespace Bloggie.Web
             UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
 
             builder.Services.AddDbContext<AuthDbContext>(options => options.
-            UseSqlServer(builder.Configuration.GetConnectionString("BloggieAuthDbConnectionString"));
+            UseSqlServer(builder.Configuration.GetConnectionString("BloggieAuthDbConnectionString")));
 
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthDbContext>();
