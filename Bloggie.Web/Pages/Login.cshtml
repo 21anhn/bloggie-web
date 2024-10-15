@@ -14,11 +14,11 @@
             <form method="post">
                 <div class="mb-3">
                     <label class="form-label">Username</label>
-                    <input class="form-control" type="text"/>
+                    <input class="form-control" type="text" asp-for="LoginViewModel.Username"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input class="form-control" type="password" />
+                    <input class="form-control" type="password" asp-for="LoginViewModel.Password"/>
                 </div>
                 <div class="mb-3">
                     <button type="submit" class="btn bg-dark text-light">Login</button>
