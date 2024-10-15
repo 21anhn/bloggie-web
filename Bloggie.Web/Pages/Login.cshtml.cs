@@ -10,44 +10,28 @@ namespace Bloggie.Web.Pages
     {
         [BindProperty]
         public Login LoginViewModel { get; set; }
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public LoginModel(UserManager<IdentityUser> userManager)
+        public LoginModel(SignInManager<IdentityUser> signInManager)
         {
-            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> OnPost()
         {
-            var user = await _userManager.FindByNameAsync(LoginViewModel.Username);
-            if (user == null)
+            var signInResult = await _signInManager.PasswordSignInAsync(LoginViewModel.Username, LoginViewModel.Password, false, false);
+            
+            if(signInResult.Succeeded)
             {
-                ViewData["Notification"] = new Notification
-                {
-                    Message = "Username does not exist!",
-                    Type = Enums.NotificationType.Error
-                };
-                return Page();
-            }
-
-            var isSuccess = new PasswordHasher<IdentityUser>().VerifyHashedPassword(user, user.PasswordHash, LoginViewModel.Password);
-
-            if(isSuccess == PasswordVerificationResult.Failed)
-            {
-                ViewData["Notification"] = new Notification
-                {
-                    Message = "Passsword is incorrect!",
-                    Type = Enums.NotificationType.Error
-                };
-                return Page();
+                return RedirectToPage("Index");
             }
 
             ViewData["Notification"] = new Notification
             {
-                Message = "Login successfully!",
-                Type = Enums.NotificationType.Success
+                Message = "Unable to login!",
+                Type = Enums.NotificationType.Error
             };
-            return RedirectToPage("Index");
+            return Page();
         }
     }
 }
