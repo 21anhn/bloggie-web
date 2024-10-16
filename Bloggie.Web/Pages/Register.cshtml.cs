@@ -25,6 +25,7 @@ namespace Bloggie.Web.Pages
                 Email = RegisterViewModel.Email,
             };
             var identityResult = await _userManager.CreateAsync(user, RegisterViewModel.Password);
+            await _userManager.AddToRoleAsync(user, "User"); //Add role to User
 
             if (identityResult.Succeeded)
             {
