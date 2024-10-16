@@ -17,12 +17,16 @@ namespace Bloggie.Web.Pages
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(string ReturnUrl)
         {
             var signInResult = await _signInManager.PasswordSignInAsync(LoginViewModel.Username, LoginViewModel.Password, false, false);
             
             if(signInResult.Succeeded)
             {
+                if (!string.IsNullOrEmpty(ReturnUrl))
+                {
+                    return RedirectToPage(ReturnUrl);
+                }
                 return RedirectToPage("Index");
             }
 
