@@ -2,12 +2,14 @@ using Bloggie.Web.Data;
 using Bloggie.Web.Models.Domain;
 using Bloggie.Web.Models.ViewModels;
 using Bloggie.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace Bloggie.Web.Pages.Admin.BlogPosts
 {
+    [Authorize(Roles = "Admin")]
     public class AddModel : PageModel
     {
         [BindProperty]
@@ -17,6 +19,7 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
         public IFormFile FeaturedImage { get; set; }
         [BindProperty]
         public string Tags { get; set; }
+        
         public AddModel(IBlogPostRepository blogPostRepository)
         {
             _blogPostRepository = blogPostRepository;
