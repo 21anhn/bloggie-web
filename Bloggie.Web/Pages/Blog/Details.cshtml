@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = Model.BlogPost.PageTitle;
 }
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> signInManager;
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -10,10 +12,20 @@
             @if (Model.BlogPost != null)
             {
                 <h1 class="mb-3">@Model.BlogPost.Heading</h1>
+
                 <div class="d-flex justify-content-between mb-3">
                     <span class="text-secondary">@Model.BlogPost.Author</span>
                     <span class="text-secondary">@Model.BlogPost.PublishedDate.ToShortDateString()</span>
                 </div>
+
+
+                <button type="button" class="btn btn-dark mb-3" onclick="handleLikeClick">
+                    <span>
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                        @Model.TotalLikes
+                        Like(s)
+                    </span>
+                </button>
 
                 <div class="mb-3">
                     @if (Model.BlogPost.Tags != null && Model.BlogPost.Tags.Any())

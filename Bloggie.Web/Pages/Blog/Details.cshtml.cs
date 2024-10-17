@@ -7,16 +7,23 @@ namespace Bloggie.Web.Pages.Blog
 {
     public class DetailsModel : PageModel
     {
-        private readonly IBlogPostRepository _repository;
+        private readonly IBlogPostRepository _blogPostRepository;
+        private readonly IBlogPostLikeRepository _blogPostLikeRepository;
         public BlogPost BlogPost { get; set; }
-        public DetailsModel(IBlogPostRepository repository)
+        public int TotalLikes { get; set; } = 0; //Defaut value
+
+        public DetailsModel(IBlogPostRepository blogPostRepository, IBlogPostLikeRepository blogPostLikeRepository)
         {
-            _repository = repository;
+            _blogPostRepository = blogPostRepository;
+            _blogPostLikeRepository = blogPostLikeRepository;
         }
 
         public async Task<IActionResult> OnGet(string urlHandle)
         {
-            BlogPost = await _repository.GetAsync(urlHandle);
+            BlogPost = await _blogPostRepository.GetAsync(urlHandle);
+            //Get total likes
+            TotalLikes = await _blogPostLikeRepository.GetTotalLikesForBlog(BlogPost.Id);
+            
             return Page();
         }
     }
