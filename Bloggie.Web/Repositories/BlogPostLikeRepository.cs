@@ -1,5 +1,6 @@
 ﻿
 using Bloggie.Web.Data;
+using Bloggie.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Repositories
@@ -13,6 +14,17 @@ namespace Bloggie.Web.Repositories
             _context = context;
         }
 
+        public async Task AddLikeForBlog(int blogPostId, Guid userId)
+        {
+            var like = new BlogPostLike
+            {
+                BlogPostId = blogPostId,
+                UserId = userId,
+            };
+            
+            await _context.Likes.AddAsync(like);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<int> GetTotalLikesForBlog(int blogId)
         {
