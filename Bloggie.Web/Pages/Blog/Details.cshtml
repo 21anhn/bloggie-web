@@ -20,8 +20,8 @@
 
 
                 <button type="button" class="btn btn-dark mb-3" onclick="handleLikeClick()">
-                    <span>
-                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                    <span id="totalLikes">
+                        <i class="bi bi-hand-thumbs-up"></i>
                         @Model.TotalLikes
                         Like(s)
                     </span>
@@ -54,9 +54,24 @@
 
 @section Scripts {
     <script>
+        const totalLikesElement = document.getElementById('totalLikes');     
+
+        function getTotalLikes() {
+            fetch('/api/blogpostlike/@Model?.BlogPost?.Id/totalLikes', {
+                method: "get",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Accept": "*/*"
+                }
+            })
+                .then(response => response.json())
+                .then(res => totalLikesElement.textContent = res + ' like(s)')
+                .catch(err => console.log(err));
+        }
+
         function handleLikeClick() {
             //console.log('ok nhe');
-                fetch('/api/blogpostlike/add', {
+            fetch('/api/blogpostlike/add', {
                 method: "post",
                 body: JSON.stringify({
                     blogPostId: '@Model?.BlogPost?.Id',
@@ -68,7 +83,13 @@
                 }
             })
                 .then(response => response.status)
-                .then(status => console.log(status))
+                .then(status => {
+                    //console.log(status);
+                    //Re-render number of likes
+                    if(status === 200) {
+                        getTotalLikes();
+                    }             
+                })
                 .catch(err => console.log(err));
         };
     </script>

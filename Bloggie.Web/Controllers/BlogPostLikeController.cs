@@ -15,12 +15,24 @@ namespace Bloggie.Web.Controllers
             _blogPostLikeRepository = blogPostLikeRepository;
         }
 
+        [Route("{blogPostId:int}/totalLikes")]
+        [HttpGet]
+        public async Task<IActionResult> GetTotalLikes([FromRoute] int blogPostId)
+        {
+            var likes = await _blogPostLikeRepository.GetTotalLikesForBlog(blogPostId);
+            return Ok(likes);
+        }
+
         [Route("Add")]
+        [HttpPost]
         public async Task<IActionResult> AddLike([FromBody] AddBlogPostLikeRequest addBlogPostLikeRequest)
         {
             await _blogPostLikeRepository.AddLikeForBlog(addBlogPostLikeRequest.BlogPostId, addBlogPostLikeRequest.UserId);
             return Ok();
         }
 
+        //[Route("Delete")]
+        //[HttpDelete]
+        //public async Task<IActionResult> 
     }
 }
