@@ -9,6 +9,7 @@ namespace Bloggie.Web.Data
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<BlogPostLike> Likes { get; set; }
+        public DbSet<BlogPostComment> Posts { get; set; }
 
         public BloggieDbContext(DbContextOptions<BloggieDbContext> options) : base(options)
         {}
