@@ -20,11 +20,21 @@
 
 
                 <button type="button" class="btn btn-dark mb-3" onclick="handleLikeClick()">
-                    <span id="totalLikes">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        @Model.TotalLikes
-                        Like(s)
+                    <span id="btnLike">
+                        <!--User is not login or is not like-->
+                        @if (!Model.IsLiked)
+                        {
+                            <i class="bi bi-hand-thumbs-up"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-hand-thumbs-up-fill"></i>
+                        }
                     </span>
+                    <!--Total likes will be inserted here-->
+                    <span id="totalLikes">
+                        @Model.TotalLikes
+                    </span> like(s)
                 </button>
 
                 <div class="mb-3">
@@ -54,7 +64,8 @@
 
 @section Scripts {
     <script>
-        const totalLikesElement = document.getElementById('totalLikes');     
+        const totalLikesElement = document.getElementById('totalLikes');
+        const btnLikeElement = document.getElementById('btnLike');
 
         function getTotalLikes() {
             fetch('/api/blogpostlike/@Model?.BlogPost?.Id/totalLikes', {
@@ -65,7 +76,10 @@
                 }
             })
                 .then(response => response.json())
-                .then(res => totalLikesElement.textContent = res + ' like(s)')
+                .then(res => {
+                    console.log(res);
+                    totalLikesElement.innerHTML = res;
+                })
                 .catch(err => console.log(err));
         }
 
@@ -86,9 +100,10 @@
                 .then(status => {
                     //console.log(status);
                     //Re-render number of likes
-                    if(status === 200) {
+                    if (status === 200) {
+                        btnLikeElement.innerHTML = '<i class="bi bi-hand-thumbs-up-fill"></i>';
                         getTotalLikes();
-                    }             
+                    }
                 })
                 .catch(err => console.log(err));
         };
