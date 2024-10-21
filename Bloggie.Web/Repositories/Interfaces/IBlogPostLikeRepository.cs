@@ -6,6 +6,6 @@ namespace Bloggie.Web.Repositories.Interfaces
     {
         Task<int> GetTotalLikesForBlog(int blogId);
         Task AddLikeForBlog(int blogPostId, Guid userId);
-        Task<BlogPostLike> getLikeByBlogPostIdAndUserId(int blogPostId, Guid userId);
+        Task<BlogPostLike> GetLikeByBlogPostIdAndUserId(int blogPostId, Guid userId);
     }
 }
