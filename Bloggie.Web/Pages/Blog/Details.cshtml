@@ -6,7 +6,7 @@
 @using Microsoft.AspNetCore.Identity;
 @inject UserManager<IdentityUser> userManager;
 
-<div class="container my-5">
+<div class="container my-5 ">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
             @if (Model.BlogPost != null)
@@ -50,8 +50,26 @@
                 </div>
 
                 <img src="@Model.BlogPost.FeaturedImageUrl" class="d-block img-fluid mb-3" />
+
                 <div class="mb-3 blog-details">
                     @Html.Raw(Model.BlogPost.Content)
+                </div>
+
+                <div class="mb-3 card">
+                    <div class="card-header">
+                        <h5 class="card-title mt-2">Share Your Thoughts</h5>
+                    </div>
+                    <div class="card-body">
+                        <textarea id="commentInput"
+                                  class="w-100 form-control px-1"
+                                  onclick="openTextEditor()"                                
+                                  style="resize: none; height: 100px">
+                        </textarea>
+                        <div id="buttonGroup" class="d-flex justify-content-end gap-1 mt-2 d-none">
+                            <button class="btn btn-dark">Post</button>
+                            <button class="btn btn-danger" onclick="closeTextEditor()">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             }
             else
@@ -66,6 +84,28 @@
     <script>
         const totalLikesElement = document.getElementById('totalLikes');
         const btnLikeElement = document.getElementById('btnLike');
+        const btnControl = document.getElementById('buttonGroup');
+        var editor;  
+
+        function openTextEditor() {
+            editor = new FroalaEditor('#commentInput', {
+                imageUploadURL: '/api/images'
+            })
+            
+            //Display button control
+            btnControl.classList.remove('d-none');
+        }
+
+        function closeTextEditor() {
+            if(editor) {
+                editor.destroy();
+                editor = null;
+            }
+
+            document.getElementById('commentInput').value = '';
+            //Hiddeen button control
+            btnControl.classList.add('d-none');
+        }
 
         function getTotalLikes() {
             fetch('/api/blogpostlike/@Model?.BlogPost?.Id/totalLikes', {
