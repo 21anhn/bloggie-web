@@ -60,15 +60,19 @@
                         <h5 class="card-title mt-2">Share Your Thoughts</h5>
                     </div>
                     <div class="card-body">
-                        <textarea id="commentInput"
-                                  class="w-100 form-control px-1"
-                                  onclick="openTextEditor()"                                
-                                  style="resize: none; height: 100px">
-                        </textarea>
-                        <div id="buttonGroup" class="d-flex justify-content-end gap-1 mt-2 d-none">
-                            <button class="btn btn-dark">Post</button>
-                            <button class="btn btn-danger" onclick="closeTextEditor()">Cancel</button>
-                        </div>
+                        <form method="post">
+                            <textarea id="commentInput"
+                                      class="w-100 form-control px-1"
+                                      onclick="openTextEditor()"
+                                      style="resize: none; height: 100px"
+                                      asp-for="Description">
+                            </textarea>
+                            <div id="buttonGroup" class="d-flex justify-content-end gap-1 mt-2 d-none">
+                                <input type="hidden" asp-for="BlogPostId"/>
+                                <input type="submit" class="btn btn-dark" asp-page-handler="comment" value="Post"/>
+                                <input type="submit" class="btn btn-danger" onclick="closeTextEditor()" value="Cancel"/>
+                            </div>
+                        </form>
                     </div>
                 </div>
             }
