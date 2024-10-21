@@ -1,9 +1,10 @@
 using Bloggie.Web.Data;
-using Bloggie.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using dotenv.net;
 using Microsoft.AspNetCore.Identity;
+using Bloggie.Web.Repositories.Interfaces;
+using Bloggie.Web.Repositories.Implementations;
 
 namespace Bloggie.Web
 {

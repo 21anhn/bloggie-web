@@ -1,8 +1,8 @@
-﻿
+﻿using Bloggie.Web.Repositories.Interfaces;
 using CloudinaryDotNet;
 using System;
 
-namespace Bloggie.Web.Repositories
+namespace Bloggie.Web.Repositories.Implementations
 {
     public class ImageRepositoryCloudinary : IImageRepository
     {

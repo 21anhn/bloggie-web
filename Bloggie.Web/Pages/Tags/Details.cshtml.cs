@@ -1,5 +1,5 @@
 using Bloggie.Web.Models.Domain;
-using Bloggie.Web.Repositories;
+using Bloggie.Web.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

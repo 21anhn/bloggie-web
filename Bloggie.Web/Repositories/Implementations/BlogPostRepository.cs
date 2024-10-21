@@ -1,8 +1,9 @@
 ﻿using Bloggie.Web.Data;
 using Bloggie.Web.Models.Domain;
+using Bloggie.Web.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bloggie.Web.Repositories
+namespace Bloggie.Web.Repositories.Implementations
 {
     public class BlogPostRepository : IBlogPostRepository
     {

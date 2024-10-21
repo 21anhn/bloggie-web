@@ -1,4 +1,4 @@
-﻿using Bloggie.Web.Repositories;
+﻿using Bloggie.Web.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bloggie.Web.Controllers
