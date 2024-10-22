@@ -38,11 +38,10 @@ namespace Bloggie.Web.Pages.Blog
         public async Task<IActionResult> OnGet(string urlHandle)
         {
             BlogPost = await _blogPostRepository.GetAsync(urlHandle);
-
+            BlogPostId = BlogPost.Id;
             //Check user login or not
-            if(_signInManager.IsSignedIn(User))
+            if (_signInManager.IsSignedIn(User))
             {
-                BlogPostId = BlogPost.Id;
                 //Check user has clicked the like button
                 var like = await _blogPostLikeRepository.GetLikeByBlogPostIdAndUserId(BlogPost.Id, Guid.Parse(_userManager?.GetUserId(User)));
                 IsLiked = like != null;             

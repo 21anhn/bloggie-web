@@ -18,7 +18,6 @@
                     <span class="text-secondary">@Model.BlogPost.PublishedDate.ToShortDateString()</span>
                 </div>
 
-
                 <button type="button" class="btn btn-dark mb-3" onclick="handleLikeClick()">
                     <span id="btnLike">
                         <!--User is not login or is not like-->
@@ -66,14 +65,35 @@
                                       onclick="openTextEditor()"
                                       style="resize: none; height: 100px"
                                       asp-for="Description">
-                            </textarea>
+                                            </textarea>
                             <div id="buttonGroup" class="d-flex justify-content-end gap-1 mt-2 d-none">
-                                <input type="hidden" asp-for="BlogPostId"/>
-                                <input type="submit" class="btn btn-dark" asp-page-handler="comment" value="Post"/>
-                                <input type="submit" class="btn btn-danger" onclick="closeTextEditor()" value="Cancel"/>
+                                <input type="hidden" asp-for="BlogPostId" />
+                                <input type="submit" class="btn btn-dark" as p-page-handler="comment" value="Post" />
+                                <a class="btn btn-danger" onclick="closeTextEditor()">Cancel</a>
                             </div>
                         </form>
                     </div>
+                </div>
+
+                @* <div class="mb-3 d-flex gap-1">
+            <div class="bg-black text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+            <i class="bi bi-person"></i>
+            </div>
+            <div class="card w-100">
+            <div class="card-body">
+            <div class="card-subtitle d-flex justify-content-between align-items-center">
+            <h5>Nhat Anh</h5>
+            <p>Sep 19</p>
+            </div>
+            <p class="card-text">
+            sấy trên sân như Fede-Brahim hay nói xấu sau lưng như Vini-Benz rồi vẫn thành cạ cứng. Cầu thủ họ đơn giản vl, có anti hay vẽ chuyện với fan only cầu thủ bị overthinking thôi :))không vẽ chuyện thì lều báo lấy gì đăng hả bạn 😂
+            </p>
+            </div>
+            </div>
+            </div> *@
+
+                <div id="commentSection">
+                    <!-- Use JQuery Ajax to inserted comments here-->
                 </div>
             }
             else
@@ -89,25 +109,25 @@
         const totalLikesElement = document.getElementById('totalLikes');
         const btnLikeElement = document.getElementById('btnLike');
         const btnControl = document.getElementById('buttonGroup');
-        var editor;  
+        var editor;
 
         function openTextEditor() {
             editor = new FroalaEditor('#commentInput', {
                 imageUploadURL: '/api/images'
             })
-            
+
             //Display button control
             btnControl.classList.remove('d-none');
         }
 
         function closeTextEditor() {
-            if(editor) {
+            if (editor) {
                 editor.destroy();
                 editor = null;
             }
 
             document.getElementById('commentInput').value = '';
-            //Hiddeen button control
+            //Hidden button control
             btnControl.classList.add('d-none');
         }
 
@@ -151,5 +171,39 @@
                 })
                 .catch(err => console.log(err));
         };
+
+        //Use jquery ajax to fetch comments
+        $.ajax({
+            url: '/api/blogpostcomment?blogPostId=@Model.BlogPostId',
+            method: 'get',
+            dataType: 'json',
+            success: (data) => {
+                let commentSection = '';
+                data.forEach(item => {
+                    commentSection += `<div class="mb-3 d-flex gap-1">
+                    <div class="bg-black text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    <div class="card w-100">
+                        <div class="card-body">
+                             <div class="card-subtitle d-flex justify-content-between align-items-center">
+                                  <h5>${item.userName}</h5>
+                                  <p>${item.dateAdded}</p>
+                             </div>
+                                   ${item.description}
+                             </div>
+                         </div>
+                    </div>`
+                    });
+
+                   document.getElementById('commentSection').innerHTML = commentSection;
+              },
+              error: (xhr, status, error) => {
+                   console.log(error);
+               }
+        })
+
+
+
     </script>
 }
