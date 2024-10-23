@@ -11,6 +11,47 @@
 
 <div>
     <div class="container">
+        <div class="d-flex justify-content-end">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-dark">Add</button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add new user</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-2">
+                                <label class="form-label fw-bold">Email</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label fw-bold">Username</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label fw-bold">Password</label>
+                                <input class="form-control" type="password"/>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label d-block fw-bold">Select roles</label>
+                                <label class="form-check-label">Admin</label>
+                                <input class="form-check-inline" type="checkbox" value="Admin" />
+                                <label class="form-check-label">Super Admin</label>
+                                <input class="form-check-inline" type="checkbox" value="SuperAdmin" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>                      
+                    </div>
+                </div>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
