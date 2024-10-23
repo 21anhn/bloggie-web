@@ -11,6 +11,7 @@
 
 <div>
     <div class="container">
+        <partial name="_Notification" />
         <div class="d-flex justify-content-end">
             <button type="button" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-dark">Add</button>
         </div>
@@ -18,37 +19,43 @@
         <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add new user</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
+                    <form method="post">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add new user</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
                             <div class="mb-2">
                                 <label class="form-label fw-bold">Email</label>
-                                <input class="form-control" type="text" />
+                                <input class="form-control" type="text" asp-for="UserViewModel.Email" />
                             </div>
                             <div class="mb-2">
                                 <label class="form-label fw-bold">Username</label>
-                                <input class="form-control" type="text"/>
+                                <input class="form-control" type="text" asp-for="UserViewModel.UserName" />
                             </div>
                             <div class="mb-2">
                                 <label class="form-label fw-bold">Password</label>
-                                <input class="form-control" type="password"/>
+                                <input class="form-control" type="password" asp-for="UserViewModel.Password" />
                             </div>
                             <div class="mb-2">
                                 <label class="form-label d-block fw-bold">Select roles</label>
-                                <label class="form-check-label">Admin</label>
-                                <input class="form-check-inline" type="checkbox" value="Admin" />
-                                <label class="form-check-label">Super Admin</label>
-                                <input class="form-check-inline" type="checkbox" value="SuperAdmin" />
+                                <div class="mb-1">
+                                    <input class="form-check-inline" type="checkbox" value="User" name="UserViewModel.Roles" />
+                                    <label class="form-check-label">User</label>
+                                </div>
+                                <div class="mb-1">
+                                    <input class="form-check-inline" type="checkbox" value="Admin" name="UserViewModel.Roles" />
+                                    <label class="form-check-label">Admin</label>
+                                </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-dark">Save changes</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>                      
-                    </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark">Add</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -61,7 +68,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var user in Model.Users)
+                @foreach (var user in Model.Users)
                 {
                     <tr>
                         <td>@user.Id</td>

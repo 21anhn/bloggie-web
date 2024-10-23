@@ -13,7 +13,14 @@ namespace Bloggie.Web.Repositories.Implementations
         {
             _authDbContext = authDbContext;
         }
-        public async Task<IEnumerable<IdentityUser>> GetAll()
+
+        public async Task AddUserAsync(IdentityUser user)
+        {
+            await _authDbContext.Users.AddAsync(user);
+            await _authDbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<IdentityUser>> GetAllAsync()
         {
             var users = await _authDbContext.Users.ToListAsync();
             var superAdminUsers = await _authDbContext.Users.FirstOrDefaultAsync(s => s.Email == "superadmin@bloggie.com");

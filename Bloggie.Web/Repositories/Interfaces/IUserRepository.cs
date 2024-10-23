@@ -4,7 +4,7 @@ namespace Bloggie.Web.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<IdentityUser>> GetAll();
-
+        Task<IEnumerable<IdentityUser>> GetAllAsync();
+        Task AddUserAsync(IdentityUser user);
     }
 }
