@@ -20,6 +20,12 @@ namespace Bloggie.Web.Repositories.Implementations
             await _authDbContext.SaveChangesAsync();
         }
 
+        public async Task DeleteUserAsync(IdentityUser user)
+        {
+            _authDbContext.Users.Remove(user);
+            await _authDbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<IdentityUser>> GetAllAsync()
         {
             var users = await _authDbContext.Users.ToListAsync();

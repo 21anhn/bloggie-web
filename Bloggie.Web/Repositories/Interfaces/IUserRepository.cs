@@ -6,5 +6,6 @@ namespace Bloggie.Web.Repositories.Interfaces
     {
         Task<IEnumerable<IdentityUser>> GetAllAsync();
         Task AddUserAsync(IdentityUser user);
+        Task DeleteUserAsync(IdentityUser user);
     }
 }

@@ -12,7 +12,7 @@
 <div>
     <div class="container">
         <partial name="_Notification" />
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mb-2">
             <button type="button" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-dark">Add</button>
         </div>
         <!-- Modal -->
@@ -59,12 +59,13 @@
                 </div>
             </div>
         </div>
-        <table class="table">
+        <table class="table table-light table-hover">
             <thead>
-                <tr>
+                <tr class="">
                     <th>Id</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -74,6 +75,9 @@
                         <td>@user.Id</td>
                         <td>@user.UserName</td>
                         <td>@user.Email</td>
+                        <td>
+                            <a class="btn btn-danger" href="/admin/users/delete/@user.Id">Delete</a>
+                        </td>
                     </tr>
                 }
             </tbody>
