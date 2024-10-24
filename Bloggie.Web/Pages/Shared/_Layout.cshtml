@@ -41,6 +41,10 @@
                                     <li>
                                         <a class="dropdown-item" href="/admin/blogposts/add">Add Blog Post</a>
                                         <a class="dropdown-item" href="/admin/blogposts/list">Get Blog Posts</a>
+                                        @if(User.IsInRole("SuperAdmin"))
+                                        {
+                                            <a class="dropdown-item" href="/admin/users/index">Manage Users</a>
+                                        }                        
                                     </li>
                                 </ul>
                             </li>
