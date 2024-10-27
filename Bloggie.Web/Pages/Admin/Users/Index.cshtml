@@ -28,15 +28,18 @@
 
                             <div class="mb-2">
                                 <label class="form-label fw-bold">Email</label>
-                                <input class="form-control" type="text" asp-for="UserViewModel.Email" />
+                                <input class="form-control" type="text" asp-for="UserViewModel.Email" required/>
+                                <span class="text-danger" asp-validation-for="UserViewModel.Email"></span>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label fw-bold">Username</label>
-                                <input class="form-control" type="text" asp-for="UserViewModel.UserName" />
+                                <input class="form-control" type="text" asp-for="UserViewModel.UserName" required/>
+                                <span class="text-danger" asp-validation-for="UserViewModel.UserName"></span>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label fw-bold">Password</label>
-                                <input class="form-control" type="password" asp-for="UserViewModel.Password" />
+                                <input class="form-control" type="password" asp-for="UserViewModel.Password" required minlength="6" />
+                                <span class="text-danger" asp-validation-for="UserViewModel.Password"></span>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label d-block fw-bold">Select roles</label>
@@ -48,6 +51,7 @@
                                     <input class="form-check-inline" type="checkbox" value="Admin" name="UserViewModel.Roles" />
                                     <label class="form-check-label">Admin</label>
                                 </div>
+                                <span class="text-danger" asp-validation-for="UserViewModel.Roles"></span>
                             </div>
 
                         </div>

@@ -15,12 +15,7 @@ namespace Bloggie.Web.Pages.Admin.Users
         [BindProperty]
         public UserViewModel UserViewModel { get; set; }
 
-        public IndexModel(IUserRepository userRepository, UserManager<IdentityUser> userManager)
-        {
-            _userRepository = userRepository;
-            _userManager = userManager;
-        }
-        public async Task<IActionResult> OnGet()
+        private async Task GetUsersViewModel()
         {
             var users = await _userRepository.GetAllAsync();
             Users = new List<UserViewModel>();
@@ -34,11 +29,25 @@ namespace Bloggie.Web.Pages.Admin.Users
                     Email = user?.Email
                 });
             }
+        }
+        public IndexModel(IUserRepository userRepository, UserManager<IdentityUser> userManager)
+        {
+            _userRepository = userRepository;
+            _userManager = userManager;
+        }
+        public async Task<IActionResult> OnGet()
+        {
+            await GetUsersViewModel();
             return Page();
         }
 
         public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                await GetUsersViewModel();
+                return Page();
+            }
             var user = new IdentityUser
             {
                 UserName = UserViewModel.UserName,
@@ -53,7 +62,7 @@ namespace Bloggie.Web.Pages.Admin.Users
             await _userRepository.AddUserAsync(user);
             var identityResult = await _userManager.AddToRolesAsync(user, UserViewModel.Roles);
 
-            if(identityResult.Succeeded)
+            if (identityResult.Succeeded)
             {
                 //ViewData["Notification"] = new Notification
                 //{
@@ -68,8 +77,8 @@ namespace Bloggie.Web.Pages.Admin.Users
                 Type = Enums.NotificationType.Error,
                 Message = "Something went wrong!"
             };
+            await GetUsersViewModel();
             return Page();
         }
     }
 }
-    
