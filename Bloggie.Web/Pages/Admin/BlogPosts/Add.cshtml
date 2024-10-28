@@ -15,18 +15,25 @@
             <div class="mb-3">
                 <label for="heading" class="form-label">Heading</label>
                 <input type="text" class="form-control" id="heading" asp-for="AddBlogPost.Heading">
+                <span class="text-danger" asp-validation-for="AddBlogPost.Heading"></span>
             </div>
             <div class="mb-3">
                 <label for="pageTitle" class="form-label">Page Title</label>
                 <input type="text" class="form-control" id="pageTitle" asp-for="AddBlogPost.PageTitle">
+                <span class="text-danger" asp-validation-for="AddBlogPost.PageTitle"></span>
+
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" id="content" asp-for="AddBlogPost.Content"></textarea>
+                <span class="text-danger" asp-validation-for="AddBlogPost.Content"></span>
+
             </div>
             <div class="mb-3">
                 <label for="shortDescription" class="form-label">Short Description</label>
                 <input type="text" class="form-control" id="shortDescription" asp-for="AddBlogPost.ShortDescription">
+                <span class="text-danger" asp-validation-for="AddBlogPost.ShortDescription"></span>
+
             </div>
             <div class="mb-3">
                 <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
@@ -44,18 +51,22 @@
             <div class="mb-3">
                 <label for="publishedDate" class="form-label">Published Date</label>
                 <input type="date" class="form-control" id="publishedDate" asp-for="AddBlogPost.PublishedDate">
+                <span class="text-danger" asp-validation-for="AddBlogPost.PublishedDate"></span>
+
             </div>
             <div class="mb-3">
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" id="author" asp-for="AddBlogPost.Author">
+                <span class="text-danger" asp-validation-for="AddBlogPost.Author"></span>
             </div>
             <div class="mb-3">
                 <label for="tags" class="form-label">Tags (comma seperated)</label>
-                <input type="text" class="form-control" id="tags" asp-for="Tags" />
+                <input type="text" class="form-control" id="tags" asp-for="Tags" required/>
             </div>
             <div class="form-check mb-3">
                 <label for="isVisible" class="form-label">Is Visible</label>
                 <input type="checkbox" class="form-check-input" id="isVisible" asp-for="AddBlogPost.Visible">
+                <span class="text-danger" asp-validation-for="AddBlogPost.Visible"></span>
             </div>
             <div class="mb-3">
                 <input class="btn btn-primary" type="submit" value="Add">

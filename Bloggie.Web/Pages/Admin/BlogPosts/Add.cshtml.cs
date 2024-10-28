@@ -27,6 +27,11 @@ namespace Bloggie.Web.Pages.Admin.BlogPosts
 
         public async Task<IActionResult> OnPost() //Create post
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             var blogPost = new BlogPost()
             {
                 Heading = AddBlogPost.Heading,
