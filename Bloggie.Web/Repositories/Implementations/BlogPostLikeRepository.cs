@@ -14,7 +14,7 @@ namespace Bloggie.Web.Repositories.Implementations
             _context = context;
         }
 
-        public async Task AddLikeForBlog(int blogPostId, Guid userId)
+        public async Task AddLikeForBlogAsync(int blogPostId, Guid userId)
         {
             var like = new BlogPostLike
             {
@@ -26,13 +26,13 @@ namespace Bloggie.Web.Repositories.Implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task<BlogPostLike> GetLikeByBlogPostIdAndUserId(int blogPostId, Guid userId)
+        public async Task<BlogPostLike> GetLikeByBlogPostIdAndUserIdAsync(int blogPostId, Guid userId)
         {
             var like = await _context.Likes.FirstOrDefaultAsync(like => like.UserId == userId && like.BlogPostId == blogPostId);
             return like;
         }
 
-        public async Task<int> GetTotalLikesForBlog(int blogId)
+        public async Task<int> GetTotalLikesForBlogAsync(int blogId)
         {
             return await _context.Likes.CountAsync(l => l.BlogPostId == blogId);
         }

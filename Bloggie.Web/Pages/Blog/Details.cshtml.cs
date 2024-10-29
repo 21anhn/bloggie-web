@@ -43,11 +43,11 @@ namespace Bloggie.Web.Pages.Blog
             if (_signInManager.IsSignedIn(User))
             {
                 //Check user has clicked the like button
-                var like = await _blogPostLikeRepository.GetLikeByBlogPostIdAndUserId(BlogPost.Id, Guid.Parse(_userManager?.GetUserId(User)));
+                var like = await _blogPostLikeRepository.GetLikeByBlogPostIdAndUserIdAsync(BlogPost.Id, Guid.Parse(_userManager?.GetUserId(User)));
                 IsLiked = like != null;             
             }
             //Get total likes
-            TotalLikes = await _blogPostLikeRepository.GetTotalLikesForBlog(BlogPost.Id);
+            TotalLikes = await _blogPostLikeRepository.GetTotalLikesForBlogAsync(BlogPost.Id);
             return Page();
         }
 
@@ -63,7 +63,7 @@ namespace Bloggie.Web.Pages.Blog
                     Description = Description,
                     DateAdded = DateTime.Now,
                 };
-                await _blogPostCommentRepository.AddCommentForBlog(blogpostcomment);
+                await _blogPostCommentRepository.AddCommentForBlogAsync(blogpostcomment);
             }
 
             return RedirectToPage("/blog/details", new { urlHandle = urlHandle });

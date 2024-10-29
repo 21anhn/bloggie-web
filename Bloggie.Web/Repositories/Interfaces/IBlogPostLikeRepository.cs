@@ -4,8 +4,8 @@ namespace Bloggie.Web.Repositories.Interfaces
 {
     public interface IBlogPostLikeRepository
     {
-        Task<int> GetTotalLikesForBlog(int blogId);
-        Task AddLikeForBlog(int blogPostId, Guid userId);
-        Task<BlogPostLike> GetLikeByBlogPostIdAndUserId(int blogPostId, Guid userId);
+        Task<int> GetTotalLikesForBlogAsync(int blogId);
+        Task AddLikeForBlogAsync(int blogPostId, Guid userId);
+        Task<BlogPostLike> GetLikeByBlogPostIdAndUserIdAsync(int blogPostId, Guid userId);
     }
 }

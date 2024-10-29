@@ -15,7 +15,7 @@ namespace Bloggie.Web.Repositories.Implementations
             _context = context;
         }
 
-        public async Task AddCommentForBlog(BlogPostComment comment)
+        public async Task AddCommentForBlogAsync(BlogPostComment comment)
         {
             await _context.Comments.AddAsync(comment);
             await _context.SaveChangesAsync();
