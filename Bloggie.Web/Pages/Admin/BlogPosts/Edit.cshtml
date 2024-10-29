@@ -22,19 +22,19 @@
                 </div>
                 <div class="mb-3">
                     <label for="heading" class="form-label">Heading</label>
-                    <input type="text" class="form-control" id="heading" asp-for="BlogPost.Heading">
+                    <input type="text" class="form-control" id="heading" asp-for="BlogPost.Heading" required>
                 </div>
                 <div class="mb-3">
                     <label for="pageTitle" class="form-label">Page Title</label>
-                    <input type="text" class="form-control" id="pageTitle" asp-for="BlogPost.PageTitle">
+                    <input type="text" class="form-control" id="pageTitle" asp-for="BlogPost.PageTitle" required>
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" id="content" asp-for="BlogPost.Content"></textarea>
+                    <textarea class="form-control" id="content" asp-for="BlogPost.Content"></textarea required>
                 </div>
                 <div class="mb-3">
                     <label for="shortDescription" class="form-label">Short Description</label>
-                    <input type="text" class="form-control" id="shortDescription" asp-for="BlogPost.ShortDescription">
+                    <input type="text" class="form-control" id="shortDescription" asp-for="BlogPost.ShortDescription" required>
                 </div>
                 <div class="mb-3">
                     <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
@@ -47,23 +47,23 @@
                 </div>
                 <div class="mb-3">
                     <label for="urlHandle" class="form-label">Url Handle</label>
-                    <input type="text" class="form-control" id="urlHandle" asp-for="BlogPost.UrlHandle">
+                    <input type="text" class="form-control" id="urlHandle" asp-for="BlogPost.UrlHandle" required>
                 </div>
                 <div class="mb-3">
                     <label for="publishedDate" class="form-label">Published Date</label>
-                    <input type="date" class="form-control" id="publishedDate" asp-for="BlogPost.PublishedDate">
+                    <input type="date" class="form-control" id="publishedDate" asp-for="BlogPost.PublishedDate" required>
                 </div>
                 <div class="mb-3">
                     <label for="author" class="form-label">Author</label>
-                    <input type="text" class="form-control" id="author" asp-for="BlogPost.Author">
+                    <input type="text" class="form-control" id="author" asp-for="BlogPost.Author" required>
                 </div>
                 <div class="mb-3">
                     <label for="tags" class="form-label">Tags (comma seperated)</label>
-                    <input type="text" class="form-control" id="tags" asp-for="Tags" />
+                    <input type="text" class="form-control" id="tags" asp-for="Tags" required/>
                 </div>
                 <div class="form-check mb-3">
                     <label for="isVisible" class="form-label">Is Visible</label>
-                    <input type="checkbox" class="form-check-input" id="isVisible" asp-for="BlogPost.Visible">
+                    <input type="checkbox" class="form-check-input" id="isVisible" asp-for="BlogPost.Visible" required>
                 </div>
                 <div class="mb-3 d-flex justify-content-between">
                     <input class="btn btn-primary" asp-page-handler="Edit" type="submit" value="Edit">
