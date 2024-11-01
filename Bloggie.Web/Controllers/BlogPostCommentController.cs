@@ -35,7 +35,7 @@ namespace Bloggie.Web.Controllers
                 {
                     Id = comment.Id,
                     Description = comment.Description,
-                    DateAdded = comment.DateAdded.ToString("MMM dd", System.Globalization.CultureInfo.InvariantCulture),
+                    DateAdded = comment.DateAdded.ToString("MMM dd, yyyy", System.Globalization.CultureInfo.InvariantCulture),
                     UserName = (await _userManager.FindByIdAsync(comment.UserId.ToString())).UserName
                 };
                 response.Add(commentResponse);
